@@ -193,7 +193,7 @@ nextApp.prepare().then(() => {
         return handle(req, res);
     });
 
-    app.listen(port, () => {
+    app.listen(port,'0.0.0.0', () => {
         console.log(`🚀 Serveur Next.js + Express actif sur le port ${port}`);
     });
 });
