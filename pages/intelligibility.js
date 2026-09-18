@@ -31,7 +31,7 @@ export default function IntelligibilityPage() {
     const average = values.reduce((a, b) => a + parseFloat(b), 0) / wordsPerSpeaker.length;
     setSpeakerAverage(average.toFixed(2));
 
-    fetch('http://localhost:3001/api/save-intelligibility', {
+    fetch('/api/save-intelligibility', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

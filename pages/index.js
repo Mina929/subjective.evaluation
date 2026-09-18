@@ -18,7 +18,7 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:3001/api/save-participant', {
+    const res = await fetch('/api/save-participant', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ firstName, lastName, job })

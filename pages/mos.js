@@ -27,7 +27,7 @@ export default function MOSPage() {
 
   useEffect(() => {
     if (participantId) {
-      fetch(`http://localhost:3001/api/get-participant/${participantId}`)
+      fetch(`/api/get-participant/${participantId}`)
         .then((res) => res.json())
         .then((data) => {
           setFirstName(data.first_name);
@@ -53,7 +53,7 @@ export default function MOSPage() {
 
     const average = values.reduce((a, b) => a + b, 0) / audios.length;
 
-    fetch('http://localhost:3001/api/save-mos', {
+    fetch('/api/save-mos', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
