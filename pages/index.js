@@ -55,7 +55,7 @@ export default function Home() {
         </div>
 
         <p className={styles.intro}>
-          Welcome to the Speech Quality Evaluation Platform, designed to evaluate the quality and intelligibility of speech.
+          Welcome to the Speech Quality Evaluation Platform, designed to assess the perceived quality of dysarthric speech following intelligibility enhancement. This study is conducted as part of ongoing doctoral research on dysarthric speech enhancement and intelligibility improvement.
         </p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
