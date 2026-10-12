@@ -2,256 +2,223 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 export default function IntelligibilityPage() {
-  const router = useRouter();
-  const { participantId } = router.query;
+const router = useRouter();
+const { participantId } = router.query;
 
-  const speakers = ['F02', 'F03', 'F04', 'F05', 'F06', 'F07', 'F08', 'F09'];
+const [scores, setScores] = useState({});
+const [intelligibilityScore, setIntelligibilityScore] = useState(null);
+const [submitted, setSubmitted] = useState(false);
+const [saving, setSaving] = useState(false);
 
-  const [currentSpeakerIndex, setCurrentSpeakerIndex] = useState(0);
-  const [scores, setScores] = useState({});
-  const [speakerAverage, setSpeakerAverage] = useState(null);
-  const [submitted, setSubmitted] = useState(false);
+const words = [
+{ word: 'Apple', audio: '/audio/apple.wav' },
+{ word: 'Table', audio: '/audio/table.wav' },
+{ word: 'Chair', audio: '/audio/chair.wav' }
+];
 
-  const wordsPerSpeaker = [
-    { word: 'Apple', audio: '/audio/apple.wav' },
-    { word: 'Table', audio: '/audio/table.wav' },
-    { word: 'Chair', audio: '/audio/chair.wav' }
-  ];
+const handleScore = (wordIndex, score) => {
+setScores(prev => ({
+...prev,
+[wordIndex]: score
+}));
+};
 
-  const handleScore = (wordIndex, score) => {
-    setScores(prev => ({
-      ...prev,
-      [wordIndex]: score
-    }));
-  };
+const handleSubmit = async () => {
+if (!participantId) {
+alert('Participant information is missing. Please try again.');
+return;
+}
 
-  const handleSubmitSpeaker = async () => {
-    const values = Object.values(scores);
+```
+if (Object.keys(scores).length !== words.length) {
+  alert('Please evaluate all words before submitting.');
+  return;
+}
 
-    if (values.length !== wordsPerSpeaker.length) {
-      alert('Please evaluate all words.');
-      return;
-    }
+const correctWords = Object.values(scores).filter(
+  score => score === 1
+).length;
 
-    // Calculate the proportion of correctly identified words
-    const correctWords = values.filter(score => score === 1).length;
-    const intelligibilityScore =
-      correctWords / wordsPerSpeaker.length;
+const score = correctWords / words.length;
 
-    setSpeakerAverage(intelligibilityScore.toFixed(2));
+setSaving(true);
 
-    try {
-      await fetch('/api/save-intelligibility', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          participantId,
-          speakerId: speakers[currentSpeakerIndex],
-          intelligibilityScore
-        })
-      });
-    } catch (error) {
-      console.error('Error saving intelligibility:', error);
-    }
-  };
+try {
+  const response = await fetch('/api/save-intelligibility', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      participantId,
+      speakerId: 'ALL',
+      intelligibilityScore: score
+    })
+  });
 
-  const handleNextSpeaker = () => {
-    setScores({});
-    setSpeakerAverage(null);
+  if (!response.ok) {
+    throw new Error('Failed to save intelligibility score.');
+  }
 
-    if (currentSpeakerIndex < speakers.length - 1) {
-      setCurrentSpeakerIndex(currentSpeakerIndex + 1);
-    } else {
-      setSubmitted(true);
-    }
-  };
+  setIntelligibilityScore(score);
+  setSubmitted(true);
+} catch (error) {
+  console.error('Error saving intelligibility:', error);
+  alert('Unable to save your evaluation. Please try again.');
+} finally {
+  setSaving(false);
+}
+```
 
-  return (
+};
+
+return (
+<div
+style={{
+backgroundColor: '#024',
+color: 'white',
+minHeight: '100vh',
+padding: '2rem'
+}}
+>
+<h1 style={{ textAlign: 'center' }}>
+Word Intelligibility Test </h1>
+
+```
+  {submitted ? (
     <div
       style={{
-        backgroundColor: '#024',
-        color: 'white',
-        minHeight: '100vh',
-        padding: '2rem'
+        textAlign: 'center',
+        marginTop: '3rem'
       }}
     >
-      <h1 style={{ textAlign: 'center' }}>
-        Word Intelligibility Test
-      </h1>
-
+      <h2>Thank you for participating!</h2>
+      <p>Your evaluation has been saved successfully.</p>
+      <p>
+        Overall intelligibility score:{' '}
+        <strong>
+          {(intelligibilityScore * 100).toFixed(0)}%
+        </strong>
+      </p>
+    </div>
+  ) : (
+    <>
       <p
         style={{
           textAlign: 'center',
           fontSize: '1rem',
           maxWidth: '800px',
-          margin: '1rem auto'
+          margin: '1rem auto 2rem'
         }}
       >
-        In this Word Intelligibility Test, you will hear individual
-        words spoken by different speakers. The target word will be
-        displayed on the screen before each audio sample.
+        You will hear three words. Listen to each audio sample
+        and indicate whether you correctly understood the word.
+        The target word is displayed on the screen.
         <br /><br />
-
-        After listening to the audio, determine whether you correctly
-        understood the spoken word:
-        <br />
         <strong>1 = Correctly understood</strong>
         <br />
         <strong>0 = Not correctly understood</strong>
         <br /><br />
-
-        After evaluating all words for one speaker, submit your
-        evaluation to proceed to the next speaker.
+        Please evaluate every word before submitting your
+        answers.
       </p>
 
-      {submitted ? (
-        <h2
+      {words.map((item, index) => (
+        <div
+          key={item.word}
           style={{
-            textAlign: 'center',
-            marginTop: '3rem'
+            backgroundColor: '#135',
+            padding: '1rem',
+            borderRadius: '10px',
+            margin: '0 auto 1.5rem',
+            maxWidth: '800px'
           }}
         >
-          Thank you for participating in this evaluation!
-        </h2>
-      ) : (
-        <>
-          <h2 style={{ textAlign: 'center' }}>
-            Speaker {speakers[currentSpeakerIndex]}
+          <h2>
+            Word {index + 1}: {item.word}
           </h2>
 
-          {wordsPerSpeaker.map((item, index) => (
-            <div
-              key={index}
+          <audio
+            controls
+            src={item.audio}
+            style={{
+              width: '100%',
+              maxWidth: '400px',
+              display: 'block',
+              margin: '1rem auto'
+            }}
+          />
+
+          <div style={{ textAlign: 'center' }}>
+            <p>Did you correctly understand the word?</p>
+
+            <button
+              type="button"
+              onClick={() => handleScore(index, 1)}
               style={{
-                backgroundColor: '#135',
-                padding: '1rem',
-                borderRadius: '10px',
-                marginBottom: '1.5rem'
+                backgroundColor:
+                  scores[index] === 1 ? '#4CAF50' : '#777',
+                color: 'white',
+                padding: '0.7rem 1.5rem',
+                margin: '0.5rem',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer'
               }}
             >
-              <p>
-                <strong>Target word:</strong> {item.word}
-              </p>
+              1 — Yes
+            </button>
 
-              <audio
-                controls
-                src={item.audio}
-                style={{
-                  width: '300px',
-                  display: 'block',
-                  margin: '0 auto'
-                }}
-              />
-
-              <div
-                style={{
-                  textAlign: 'center',
-                  marginTop: '1rem'
-                }}
-              >
-                <p>Did you correctly understand the word?</p>
-
-                <button
-                  onClick={() => handleScore(index, 1)}
-                  style={{
-                    backgroundColor:
-                      scores[index] === 1 ? '#4CAF50' : '#777',
-                    color: 'white',
-                    padding: '0.7rem 1.5rem',
-                    margin: '0.5rem',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  1 — Yes
-                </button>
-
-                <button
-                  onClick={() => handleScore(index, 0)}
-                  style={{
-                    backgroundColor:
-                      scores[index] === 0 ? '#d9534f' : '#777',
-                    color: 'white',
-                    padding: '0.7rem 1.5rem',
-                    margin: '0.5rem',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  0 — No
-                </button>
-              </div>
-            </div>
-          ))}
-
-          {speakerAverage !== null && (
-            <>
-              <p
-                style={{
-                  textAlign: 'center',
-                  fontSize: '1.2rem'
-                }}
-              >
-                Intelligibility score for Speaker{' '}
-                {speakers[currentSpeakerIndex]}:{' '}
-                <strong>{speakerAverage}</strong>
-              </p>
-
-              <div
-                style={{
-                  textAlign: 'center',
-                  marginTop: '2rem'
-                }}
-              >
-                <button
-                  onClick={handleNextSpeaker}
-                  style={{
-                    backgroundColor: '#4CAF50',
-                    color: 'white',
-                    padding: '1rem 2rem',
-                    fontSize: '1.2rem',
-                    border: 'none',
-                    borderRadius: '10px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  {currentSpeakerIndex < speakers.length - 1
-                    ? 'Next Speaker'
-                    : 'Submit Evaluation'}
-                </button>
-              </div>
-            </>
-          )}
-
-          {speakerAverage === null && (
-            <div
+            <button
+              type="button"
+              onClick={() => handleScore(index, 0)}
               style={{
-                textAlign: 'center',
-                marginTop: '2rem'
+                backgroundColor:
+                  scores[index] === 0 ? '#d9534f' : '#777',
+                color: 'white',
+                padding: '0.7rem 1.5rem',
+                margin: '0.5rem',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer'
               }}
             >
-              <button
-                onClick={handleSubmitSpeaker}
-                style={{
-                  backgroundColor: '#4CAF50',
-                  color: 'white',
-                  padding: '1rem 2rem',
-                  fontSize: '1.2rem',
-                  border: 'none',
-                  borderRadius: '10px',
-                  cursor: 'pointer'
-                }}
-              >
-                Submit Speaker {speakers[currentSpeakerIndex]}
-              </button>
-            </div>
-          )}
-        </>
-      )}
-    </div>
-  );
+              0 — No
+            </button>
+
+            <p>
+              {scores[index] === undefined
+                ? 'Not evaluated yet'
+                : scores[index] === 1
+                ? 'Answer: Correctly understood'
+                : 'Answer: Not correctly understood'}
+            </p>
+          </div>
+        </div>
+      ))}
+
+      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <button
+          type="button"
+          onClick={handleSubmit}
+          disabled={saving}
+          style={{
+            backgroundColor: saving ? '#777' : '#4CAF50',
+            color: 'white',
+            padding: '1rem 2rem',
+            fontSize: '1.2rem',
+            border: 'none',
+            borderRadius: '10px',
+            cursor: saving ? 'not-allowed' : 'pointer'
+          }}
+        >
+          {saving ? 'Submitting...' : 'Submit Evaluation'}
+        </button>
+      </div>
+    </>
+  )}
+</div>
+```
+
+);
 }
