@@ -15,23 +15,39 @@ export default function MOSPage() {
   const audioPairs = [
     {
       reference: '/audio/mos/reference1.WAV',
-      enhanced: '/audio/mos/enhanced1.WAV'
+      enhanced: '/audio/mos/Copie de ablutions.wav'
     },
     {
       reference: '/audio/mos/reference2.WAV',
-      enhanced: '/audio/mos/enhanced2.WAV'
+      enhanced: '/audio/mos/Copie de absolve.wav'
     },
     {
       reference: '/audio/mos/reference3.WAV',
-      enhanced: '/audio/mos/enhanced3.WAV'
+      enhanced: '/audio/mos/Copie de adhesion.wav'
     },
     {
       reference: '/audio/mos/reference4.WAV',
-      enhanced: '/audio/mos/enhanced4.WAV'
+      enhanced: '/audio/mos/Copie de adjacent.wav'
+    },
+	{
+      reference: '/audio/mos/reference3.WAV',
+      enhanced: '/audio/mos/Copie de although.wav'
+    },
+	{
+      reference: '/audio/mos/reference3.WAV',
+      enhanced: '/audio/mos/Copie de anxieties.wav'
+    },
+	{
+      reference: '/audio/mos/reference3.WAV',
+      enhanced: '/audio/mos/Copie de apothecary.wav'
+    },
+	{
+      reference: '/audio/mos/reference3.WAV',
+      enhanced: '/audio/mos/Copie de apprehend.wav'
     },
     {
       reference: '/audio/mos/reference5.WAV',
-      enhanced: '/audio/mos/enhanced5.WAV'
+      enhanced: '/audio/mos/Copie de advantageous.wav'
     }
   ];
 
