@@ -11,9 +11,21 @@ export default function IntelligibilityPage() {
   const [saving, setSaving] = useState(false);
 
   const words = [
-    { word: 'Apple', audio: '/audio/apple.wav' },
-    { word: 'Table', audio: '/audio/table.wav' },
-    { word: 'Chair', audio: '/audio/chair.wav' }
+    { word: 'Bloodshed', audio: '/audio/intelligibility/Copie de bloodshed.wav' },
+    { word: 'Brotherhood', audio: '/audio/intelligibility/Copie de brotherhood.wav' },
+    { word: 'Emilio', audio: '/audio/intelligibility/Copie de emilio.wav' },
+    { word: 'Feather', audio: '/audio/intelligibility/Copie de feather.wav' },
+    { word: 'Fishing', audio: '/audio/intelligibility/Copie de fishing.wav' },
+    { word: 'Foxtrot', audio: '/audio/intelligibility/Copie de foxtrot.wav' },
+    { word: 'Needlepoint', audio: '/audio/intelligibility/Copie de needlepoint.wav' },
+    { word: 'November', audio: '/audio/intelligibility/Copie de november.wav' },
+    { word: 'Number', audio: '/audio/intelligibility/Copie de number.wav' },
+    { word: 'Nuremberg', audio: '/audio/intelligibility/Copie de nuremberg.wav' },
+    { word: 'Paragraph', audio: '/audio/intelligibility/Copie de paragraph.wav' },
+    { word: 'Pennyworth', audio: '/audio/intelligibility/Copie de pennyworth.wav' },
+    { word: 'Schoolyard', audio: '/audio/intelligibility/Copie de schoolyard.wav' },
+    { word: 'Sentence', audio: '/audio/intelligibility/Copie de sentence.wav' },
+    { word: 'Sharpshooter', audio: '/audio/intelligibility/Copie de sharpshooter.wav' }
   ];
 
   const handleScore = (wordIndex, score) => {
