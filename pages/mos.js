@@ -48,6 +48,34 @@ export default function MOSPage() {
     {
       reference: '/audio/mos/reference5.WAV',
       enhanced: '/audio/mos/Copie de advantageous.wav'
+    },
+    {
+      reference: '/audio/mos/reference5.WAV',
+      enhanced: '/audio/mos/Copie de approach.wav'
+    },
+    {
+      reference: '/audio/mos/reference5.WAV',
+      enhanced: '/audio/mos/Copie de astounded.wav'
+    },
+    {
+      reference: '/audio/mos/reference5.WAV',
+      enhanced: '/audio/mos/Copie de atrocious.wav'
+    },
+    {
+      reference: '/audio/mos/reference5.WAV',
+      enhanced: '/audio/mos/Copie de authoritative.wav'
+    },
+    {
+      reference: '/audio/mos/reference5.WAV',
+      enhanced: '/audio/mos/Copie de battlefield.wav'
+    },
+    {
+      reference: '/audio/mos/reference5.WAV',
+      enhanced: '/audio/mos/Copie de battlements.wav'
+    },
+    {
+      reference: '/audio/mos/reference5.WAV',
+      enhanced: '/audio/mos/Copie de betroth.wav'
     }
   ];
 
