@@ -25,6 +25,7 @@ export default function IntelligibilityPage() {
     { word: 'Pennyworth', audio: '/audio/intelligibility/Copie de pennyworth.wav' },
     { word: 'Schoolyard', audio: '/audio/intelligibility/Copie de schoolyard.wav' },
     { word: 'Sentence', audio: '/audio/intelligibility/Copie de sentence.wav' },
+    { word: 'Seven', audio: '/audio/intelligibility/Copie de seven.wav' },
     { word: 'Sharpshooter', audio: '/audio/intelligibility/Copie de sharpshooter.wav' }
   ];
 
