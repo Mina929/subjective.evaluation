@@ -14,67 +14,67 @@ export default function MOSPage() {
   // Reference and enhanced speech for each sample
   const audioPairs = [
     {
-      reference: '/audio/mos/reference1.WAV',
+      reference: '/audio/mos/ref1.wav',
       enhanced: '/audio/mos/Copie de ablutions.wav'
     },
     {
-      reference: '/audio/mos/reference2.WAV',
+      reference: '/audio/mos/ref2.wav',
       enhanced: '/audio/mos/Copie de absolve.wav'
     },
     {
-      reference: '/audio/mos/reference3.WAV',
+      reference: '/audio/mos/ref3.wav',
       enhanced: '/audio/mos/Copie de adhesion.wav'
     },
     {
-      reference: '/audio/mos/reference4.WAV',
+      reference: '/audio/mos/ref4.wav',
       enhanced: '/audio/mos/Copie de adjacent.wav'
     },
 	{
-      reference: '/audio/mos/reference3.WAV',
+      reference: '/audio/mos/ref5.wav',
       enhanced: '/audio/mos/Copie de although.wav'
     },
 	{
-      reference: '/audio/mos/reference3.WAV',
+      reference: '/audio/mos/ref6.wav',
       enhanced: '/audio/mos/Copie de anxieties.wav'
     },
 	{
-      reference: '/audio/mos/reference3.WAV',
+      reference: '/audio/mos/ref7.wav',
       enhanced: '/audio/mos/Copie de apothecary.wav'
     },
 	{
-      reference: '/audio/mos/reference3.WAV',
+      reference: '/audio/mos/ref8.wav',
       enhanced: '/audio/mos/Copie de apprehend.wav'
     },
     {
-      reference: '/audio/mos/reference5.WAV',
+      reference: '/audio/mos/ref9.wav',
       enhanced: '/audio/mos/Copie de advantageous.wav'
     },
     {
-      reference: '/audio/mos/reference5.WAV',
+      reference: '/audio/mos/ref10.wav',
       enhanced: '/audio/mos/Copie de approach.wav'
     },
     {
-      reference: '/audio/mos/reference5.WAV',
+      reference: '/audio/mos/ref11.wav',
       enhanced: '/audio/mos/Copie de astounded.wav'
     },
     {
-      reference: '/audio/mos/reference5.WAV',
+      reference: '/audio/mos/ref12.wav',
       enhanced: '/audio/mos/Copie de atrocious.wav'
     },
     {
-      reference: '/audio/mos/reference5.WAV',
+      reference: '/audio/mos/ref13.wav',
       enhanced: '/audio/mos/Copie de authoritative.wav'
     },
     {
-      reference: '/audio/mos/reference5.WAV',
+      reference: '/audio/mos/ref14.wav',
       enhanced: '/audio/mos/Copie de battlefield.wav'
     },
     {
-      reference: '/audio/mos/reference5.WAV',
+      reference: '/audio/mos/ref15.wav',
       enhanced: '/audio/mos/Copie de battlements.wav'
     },
     {
-      reference: '/audio/mos/reference5.WAV',
+      reference: '/audio/mos/ref16.wav',
       enhanced: '/audio/mos/Copie de betroth.wav'
     }
   ];
