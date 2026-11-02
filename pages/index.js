@@ -55,7 +55,9 @@ export default function Home() {
         </div>
 
         <p className={styles.intro}>
-          Welcome to this research study. This platform is designed to collect subjective assessments of speech quality following intelligibility enhancement of dysarthric speech. Your participation will contribute to ongoing doctoral research on pathological speech processing and enhancement
+          This platform is part of an ongoing doctoral research project focused on improving the intelligibility of dysarthric speech. It aims to collect subjective assessments of enhanced speech quality and intelligibility, complementing objective evaluation metrics with human perception.
+
+Your participation will contribute to advancing research in pathological speech processing and enhancement. Thank you for your valuable contribution!
         </p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
