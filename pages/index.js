@@ -44,7 +44,7 @@ export default function Home() {
         }}>
           
           <h1 className={styles.title} style={{ marginLeft: '1rem' }}>
-            Speech Quality Evaluation
+            Subjective Evaluation of Enhanced Dysarthric Speech
           </h1>
 		  <Image
             src="/logo.png"
@@ -55,7 +55,7 @@ export default function Home() {
         </div>
 
         <p className={styles.intro}>
-          Welcome to the Speech Quality Evaluation Platform, designed to assess the perceived quality of dysarthric speech following intelligibility enhancement. This study is conducted as part of ongoing doctoral research on dysarthric speech enhancement and intelligibility improvement.
+          Welcome to this research study. This platform is designed to collect subjective assessments of speech quality following intelligibility enhancement of dysarthric speech. Your participation will contribute to ongoing doctoral research on pathological speech processing and enhancement
         </p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
